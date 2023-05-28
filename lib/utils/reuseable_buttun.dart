@@ -1,7 +1,4 @@
-import 'package:bmi_starting/screens/result_page.dart';
 import 'package:flutter/material.dart';
-
-import '../bmi_brain.dart';
 
 class ReuseableButton extends StatelessWidget {
   const ReuseableButton({
@@ -26,7 +23,7 @@ class ReuseableButton extends StatelessWidget {
             onPressed: onPress,
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 26,
                   fontWeight: FontWeight.w900),

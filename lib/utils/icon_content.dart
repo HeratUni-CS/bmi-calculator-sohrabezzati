@@ -22,7 +22,7 @@ class IconContent extends StatelessWidget {
           icon,
           size: 56,
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         ReuseableText(text: lebel)

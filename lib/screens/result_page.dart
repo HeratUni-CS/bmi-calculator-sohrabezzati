@@ -19,8 +19,8 @@ class ResultPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
+        const Padding(
+          padding: EdgeInsets.all(16.0),
           child: StyledNumberText(text: 'Your Result'),
         ),
         Expanded(

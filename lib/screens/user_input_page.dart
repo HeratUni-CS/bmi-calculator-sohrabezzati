@@ -41,7 +41,8 @@ class _InputPageState extends State<InputPage> {
                     child: ReuseableContiner(
                         child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16)),
                           color: selectedGender == Genders.male
                               ? Colors.red
                               : Colors.transparent),
@@ -58,7 +59,8 @@ class _InputPageState extends State<InputPage> {
                       child: ReuseableContiner(
                           child: Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
                         color: selectedGender == Genders.female
                             ? Colors.red
                             : Colors.transparent),
@@ -78,14 +80,14 @@ class _InputPageState extends State<InputPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ReuseableText(text: 'HEIGHT'),
+                    const ReuseableText(text: 'HEIGHT'),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       mainAxisAlignment: MainAxisAlignment.center,
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         StyledNumberText(text: value.round().toString()),
-                        Text(
+                        const Text(
                           "cm",
                           style: TextStyle(
                             fontSize: 18,
@@ -94,16 +96,16 @@ class _InputPageState extends State<InputPage> {
                       ],
                     ),
                     SliderTheme(
-                      data: SliderThemeData().copyWith(
+                      data: const SliderThemeData().copyWith(
                         trackHeight: 0.5,
-                        inactiveTrackColor: Color(0xFF8D8E98),
+                        inactiveTrackColor: const Color(0xFF8D8E98),
                         activeTrackColor: Colors.white,
-                        thumbColor: Color(0xFFEB1555),
-                        overlayColor: Color(0x29EB1555),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        thumbColor: const Color(0xFFEB1555),
+                        overlayColor: const Color(0x29EB1555),
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 15.0),
                         overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                            const RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
                           min: 100,
@@ -131,12 +133,12 @@ class _InputPageState extends State<InputPage> {
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ReuseableText(text: 'WEIGHT'),
-                        SizedBox(
+                        const ReuseableText(text: 'WEIGHT'),
+                        const SizedBox(
                           height: 8,
                         ),
                         StyledNumberText(text: weight.toString()),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         Row(
@@ -149,7 +151,7 @@ class _InputPageState extends State<InputPage> {
                                 },
                                 backgroundColor: Colors.white24,
                                 iconColor: Colors.white),
-                            SizedBox(
+                            const SizedBox(
                               width: 16,
                             ),
                             RoundedIconButton(
@@ -169,12 +171,12 @@ class _InputPageState extends State<InputPage> {
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ReuseableText(text: 'AGE'),
-                        SizedBox(
+                        const ReuseableText(text: 'AGE'),
+                        const SizedBox(
                           height: 8,
                         ),
                         StyledNumberText(text: age.toString()),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         Row(
@@ -187,7 +189,7 @@ class _InputPageState extends State<InputPage> {
                                 },
                                 backgroundColor: Colors.white24,
                                 iconColor: Colors.white),
-                            SizedBox(
+                            const SizedBox(
                               width: 16,
                             ),
                             RoundedIconButton(

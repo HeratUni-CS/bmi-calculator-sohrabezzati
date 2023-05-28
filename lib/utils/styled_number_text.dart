@@ -11,7 +11,7 @@ class StyledNumberText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text.toString(),
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.w900,
         fontSize: 46,
       ),
