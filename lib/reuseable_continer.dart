@@ -1,3 +1,4 @@
+import 'package:bmi_starting/user_input_page.dart';
 import 'package:flutter/material.dart';
 
 class ReuseableContiner extends StatelessWidget {
@@ -13,7 +14,7 @@ class ReuseableContiner extends StatelessWidget {
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(16)),
-          color: Colors.amber),
+          color: Colors.black38),
       child: child,
     );
   }

@@ -1,8 +1,14 @@
 import 'package:bmi_starting/reuseable_continer.dart';
+import 'package:bmi_starting/reuseable_text.dart';
+import 'package:bmi_starting/rounded_icon_button.dart';
+import 'package:bmi_starting/styled_number_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'icon_content.dart';
+
+enum Genders { male, female }
+
+Genders? selectedGender;
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -12,6 +18,9 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  double value = 150;
+  int weight = 10;
+  int age = 13;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +36,36 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: ReuseableContiner(
-                        child: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      lebel: 'Male',
+                        child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                          color: selectedGender == Genders.male
+                              ? Colors.red
+                              : Colors.black26),
+                      child: IconContent(
+                        setGener: () {
+                          selectGender('male');
+                        },
+                        icon: FontAwesomeIcons.mars,
+                        lebel: 'MALE',
+                      ),
                     )),
                   ),
                   Expanded(
                       child: ReuseableContiner(
-                          child: IconContent(
-                    icon: FontAwesomeIcons.venus,
-                    lebel: 'FEMALE',
+                          child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        color: selectedGender == Genders.female
+                            ? Colors.red
+                            : Colors.black26),
+                    child: IconContent(
+                      setGener: () {
+                        selectGender('female');
+                      },
+                      icon: FontAwesomeIcons.venus,
+                      lebel: 'FEMALE',
+                    ),
                   )))
                 ],
               ),
@@ -46,12 +75,33 @@ class _InputPageState extends State<InputPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("HEIGHT"),
+                    ReuseableText(text: 'HEIGHT'),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("125"), Text("cm")],
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        StyledNumberText(text: value.round().toString()),
+                        Text(
+                          "cm",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        )
+                      ],
                     ),
-                    Slider(value: 0.5, onChanged: (value) {})
+                    Slider(
+                        min: 100,
+                        max: 220,
+                        value: value,
+                        activeColor: Colors.red.shade400,
+                        inactiveColor: Colors.white30,
+                        onChanged: (neWvalue) {
+                          debugPrint(neWvalue.toString());
+                          setState(() {
+                            value = neWvalue;
+                          });
+                        })
                   ],
                 ),
               ),
@@ -61,24 +111,80 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                          color: Colors.amber),
-                      child: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        lebel: 'MALE',
-                      ),
-                    ),
+                    child: ReuseableContiner(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ReuseableText(text: 'WEIGHT'),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        StyledNumberText(text: weight.toString()),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  weightDown();
+                                },
+                                backgroundColor: Colors.white24,
+                                iconColor: Colors.white),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  weightUp();
+                                },
+                                backgroundColor: Colors.white24,
+                                iconColor: Colors.white)
+                          ],
+                        )
+                      ],
+                    )),
                   ),
                   Expanded(
                     child: ReuseableContiner(
-                      child: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        lebel: 'FEMALE',
-                      ),
-                    ),
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ReuseableText(text: 'AGE'),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        StyledNumberText(text: age.toString()),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  ageDown();
+                                },
+                                backgroundColor: Colors.white24,
+                                iconColor: Colors.white),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  ageUp();
+                                },
+                                backgroundColor: Colors.white24,
+                                iconColor: Colors.white)
+                          ],
+                        )
+                      ],
+                    )),
                   )
                 ],
               ),
@@ -86,10 +192,54 @@ class _InputPageState extends State<InputPage> {
             Container(
               height: 64,
               width: double.maxFinite,
-              decoration: BoxDecoration(color: Colors.orangeAccent),
-              child: TextButton(onPressed: () {}, child: Text('CALCULATE')),
+              decoration: BoxDecoration(color: Colors.red.shade400),
+              child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900),
+                  )),
             )
           ],
         ));
+  }
+
+  void selectGender(String gender) {
+    setState(() {
+      if (gender == 'male') {
+        selectedGender = Genders.male;
+        debugPrint('selected gender:  $selectedGender');
+      } else {
+        selectedGender = Genders.female;
+        debugPrint('selected gender:  $selectedGender');
+      }
+    });
+  }
+
+  void ageUp() {
+    setState(() {
+      age++;
+    });
+  }
+
+  void ageDown() {
+    setState(() {
+      age--;
+    });
+  }
+
+  void weightUp() {
+    setState(() {
+      weight++;
+    });
+  }
+
+  void weightDown() {
+    setState(() {
+      weight--;
+    });
   }
 }
