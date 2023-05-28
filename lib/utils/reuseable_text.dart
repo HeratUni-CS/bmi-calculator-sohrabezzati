@@ -11,7 +11,7 @@ class ReuseableText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontSize: 14, color: Colors.amber),
+      style: TextStyle(fontSize: 18, color: Colors.white54),
     );
   }
 }
