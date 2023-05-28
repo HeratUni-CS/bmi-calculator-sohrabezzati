@@ -41,7 +41,7 @@ class _InputPageState extends State<InputPage> {
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                           color: selectedGender == Genders.male
                               ? Colors.red
-                              : Colors.black26),
+                              : Colors.transparent),
                       child: IconContent(
                         setGener: () {
                           selectGender('male');
@@ -58,7 +58,7 @@ class _InputPageState extends State<InputPage> {
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                         color: selectedGender == Genders.female
                             ? Colors.red
-                            : Colors.black26),
+                            : Colors.transparent),
                     child: IconContent(
                       setGener: () {
                         selectGender('female');
@@ -211,7 +211,7 @@ class _InputPageState extends State<InputPage> {
                   child: Text(
                     'CALCULATE',
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.white70,
                         fontSize: 26,
                         fontWeight: FontWeight.w900),
                   )),
