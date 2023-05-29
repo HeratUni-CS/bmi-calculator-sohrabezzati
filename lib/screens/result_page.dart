@@ -26,6 +26,7 @@ class ResultPage extends StatelessWidget {
         Expanded(
           child: ReuseableContiner(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ReuseableText(text: shortResult),
